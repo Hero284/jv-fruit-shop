@@ -12,6 +12,9 @@ public class Storage {
 
     public void removeFruit(String fruit, int quantity) {
         fruits.put(fruit, fruits.getOrDefault(fruit, 0) - quantity);
+        if (fruits.get(fruit) < 0) {
+            throw new RuntimeException("Number of fruits can't be negative");
+        }
     }
 
     public Map<String, Integer> getAllFruits() {

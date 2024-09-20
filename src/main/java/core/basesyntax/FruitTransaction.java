@@ -24,9 +24,9 @@ public class FruitTransaction {
     }
 
     public static Operation fromCode(String code) {
-        for (Operation op : Operation.values()) {
-            if (op.getCode().equals(code)) {
-                return op;
+        for (Operation operation : Operation.values()) {
+            if (operation.getCode().equals(code)) {
+                return operation;
             }
         }
         throw new IllegalArgumentException("Invalid operation code: " + code);
@@ -47,5 +47,24 @@ public class FruitTransaction {
         public String getCode() {
             return code;
         }
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        FruitTransaction current = (FruitTransaction) obj;
+        return quantity == current.quantity
+                && operation == current.operation
+                && fruit.equals(current.fruit);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
     }
 }
